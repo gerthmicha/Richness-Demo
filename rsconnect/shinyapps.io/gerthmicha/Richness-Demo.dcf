@@ -1,0 +1,12 @@
+name: Richness-Demo
+title: Richness-Demo
+username:
+account: gerthmicha
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1479984
+bundleId: 2594385
+url: https://gerthmicha.shinyapps.io/Richness-Demo/
+when: 1573942303.92401
+asMultiple: FALSE
+asStatic: FALSE
