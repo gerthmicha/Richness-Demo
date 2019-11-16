@@ -60,7 +60,7 @@ server <- function(input, output) {
     S <- specnumber(r_comm()) # observed number of species
     raremax <- min(rowSums(r_comm()))
     Srare <- rarefy(r_comm(), raremax, se =TRUE)
-    rarecurve(r_comm(), step = 5, sample = raremax, col = "blue", main = "Rarefaction Species Richness", ylim = c(0, input$S))
+    rarecurve(r_comm(), step = 5, sample = raremax, col = "blue", main = "Rarefaction Curve", ylim = c(0, input$S))
     res <- estimateR(r_comm())[c(1, 2, 4)]
     names(res) <- c("Obs", "Chao1", "ACE")
     barplot(t(res), horiz = TRUE, main = "Estimated richness", cex.names = 2.5, xlim = c(0, input$S+input$S*0.2))
@@ -74,11 +74,11 @@ server <- function(input, output) {
   
   output$Plot2 <- renderPlot(height = 1200, {
       par(mfrow = c(3, 2), cex.main = 3, cex.axis = 2, cex.lab=2)
-      barplot(t(r_comm2()), main = "Species abundance per site", col = viridis(input$S), cex.names = 2.5)
+      barplot(t(r_comm2()), main = "Species abundances per site", col = viridis(input$S), cex.names = 2.5)
       S <- specnumber(r_comm2()) # observed number of species
       raremax <- min(rowSums(r_comm2()))
       Srare <- rarefy(r_comm2(), raremax)
-      rarecurve(r_comm2(), step = 5, sample = raremax, col = "blue", main = "Rarefaction Species Richness", ylim = c(0, input$S))
+      rarecurve(r_comm2(), step = 5, sample = raremax, col = "blue", main = "Rarefaction Curves", ylim = c(0, input$S))
       sp1 <- specaccum(r_comm2(), "random")
       plot(sp1, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue", main = "Species accumulation curve")
       res <- t(specpool(r_comm2())[c(1, 2, 4, 7)])
