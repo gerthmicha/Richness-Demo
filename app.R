@@ -59,7 +59,9 @@ server <- function(input, output) {
     sortbar <- r_comm()
     names(sortbar) <- paste0("Sp", 1:input$S)
     sortbar <- sort(sortbar, decreasing =TRUE)
-    barplot(sortbar, main = "Species abundance")
+    bp <- barplot(sortbar, main = "Species abundance")
+    lines(x = bp, y = sortbar, lwd = 2)
+    points(x = bp, y = sortbar, cex = 2)
     S <- specnumber(r_comm()) # observed number of species
     raremax <- min(rowSums(r_comm()))
     Srare <- rarefy(r_comm(), raremax, se =TRUE)
