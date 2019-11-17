@@ -56,7 +56,10 @@ server <- function(input, output) {
 
   output$Plot1 <- renderPlot(height = 800, {
     par(mfrow = c(2, 2), cex.main = 2.5, cex.axis = 1.5, cex.lab=1.5)
-    barplot(r_comm(), main = "Species abundance")
+    sortbar <- r_comm()
+    names(sortbar) <- paste0("Sp", 1:input$S)
+    sortbar <- sort(sortbar, decreasing =TRUE)
+    barplot(sortbar, main = "Species abundance")
     S <- specnumber(r_comm()) # observed number of species
     raremax <- min(rowSums(r_comm()))
     Srare <- rarefy(r_comm(), raremax, se =TRUE)
